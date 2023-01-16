@@ -19,10 +19,29 @@ pacman::p_load(tidyverse,sf)
 
 ```{r}
 mpsz <- st_read(dsn = "data/geospatial", layer = "MP14_SUBZONE_WEB_PL")
+cyclingpath <- st_read(dsn = "data/geospatial", layer = "CyclingPathGazette")
+```
+## Importing a GIS data in kml format
+```{r}
+preschool = st_read("data/geospatial/preschools-location.kml")
+```
+## Checking the content of a simple feature data frame
+```{r}
+st_geometry(mpsz)
+glimpse(mpsz)
+head(mpsz, n=5)
 ```
 
 ## Plotting the Geospatial Data
 
 ```{r}
 plot(mpsz)
+plot(st_geometry(mpsz))
+plot(mpsz["PLN_AREA_N"])
+```
+
+## Working with Projection
+### Assigning EPSG code to a simple feature data frame
+```{r}
+st_crs(mpsz)
 ```
